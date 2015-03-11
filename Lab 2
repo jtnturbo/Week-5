@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class GuessNumber2 
+{
+	public static void main( String[] args)
+	{
+		Scanner input = new Scanner ( System.in );
+		
+		int compNum;
+		int guess = 0;
+		boolean go = true;
+		boolean run = true;
+		
+		compNum = 1 + (int)( Math.random() * 10);
+		
+		System.out.println( "Guess a Number Game");
+		
+		while ( go == true )
+			{
+				while ( run )
+				{
+			
+					System.out.print( "\nGuess a number: ");
+					guess = input.nextInt();
+		
+		
+					if ( compNum > guess)
+					{
+						System.out.println ( "Guess too low, try again");
+					}
+					else if ( compNum < guess )
+					{
+						System.out.println( "Guess too high, try again");
+					}
+			
+					else
+						System.out.println( "Guess was correct!");
+					run = false;
+				}
+				
+				
+				if ( compNum > guess )
+				{
+					run = true;
+				}
+				if ( compNum < guess )
+				{
+					run = true;
+				}
+				else if ( compNum == guess)
+				{
+					go = false;
+					System.out.println( "Game over");
+				}
+				
+
+			 } 
+			
+	}
+		
+
+}
