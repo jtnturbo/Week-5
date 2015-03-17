@@ -1,0 +1,106 @@
+/* Modified Guess a Number Game. Keeps track of the good and bad guesses and also the total games played 
+Allows user to decide whether to continue or not. */
+
+import java.util.Scanner;
+import java.lang.NullPointerException;
+
+public class GuessNumberGame 
+{
+	public static void main( String[] args )
+	{
+		Scanner input = new Scanner( System.in );
+		
+		int compNum;
+		int guess;
+		int good_guessesCount;
+		int bad_guessesCount;
+		int games_playedCount;
+		boolean go = true;
+		boolean run = true;
+		String guess_againResponse = null;
+		
+		
+		compNum = 1 + (int)( Math.random() * 20);
+		
+		good_guessesCount = 0;
+		bad_guessesCount = 0;
+		games_playedCount = 0;
+		
+		System.out.println( "Guess a Number Game");
+		
+		
+		while( go == true )
+		{
+			while( run )
+			{
+				System.out.print( "\nGuess a number between 1 & 20: ");
+				guess = input.nextInt();
+				
+				
+				if(( guess >= 1) && ( guess <= 20 ))
+				{
+					if( compNum > guess )
+					{
+						System.out.println( "Your guess was too low" );
+						run = false;
+						bad_guessesCount++;
+					}
+					
+					if ( compNum < guess )
+					{
+						System.out.println( "Your guess was too high");
+						run = false;
+						bad_guessesCount++;
+					}
+			
+					else if ( compNum == guess )
+					{
+						System.out.println( "Your guess was correct!");
+						run = false;
+						good_guessesCount++;
+						compNum = 1 + (int)( Math.random() * 20);
+					}
+				}
+				
+				if (( guess < 1 || guess > 20)) 
+				{
+					System.out.println( "Invalid guess, try again");
+					go = true;	
+				}		
+				
+			}
+				{
+					games_playedCount++;
+				}
+				if(run == false)
+				{
+						System.out.printf( "\n%s %d %s", "Good guesses:", good_guessesCount , "|" );
+					    System.out.printf( " %s %d" , "Bad guesses:" , bad_guessesCount );
+					    System.out.printf( "\n        %s %d" , "Games played:" , games_playedCount );
+					   
+			           System.out.print("\nWould you like to guess again? (enter yes or no): ");
+					   guess_againResponse = input.next();
+					   
+				}
+				   		
+				if( guess_againResponse.equals("yes") )
+				{
+					run = true;
+				}
+				else if ( guess_againResponse.equals("no"))
+				{
+					go = false;
+					System.out.println( "Game over");
+				}
+				
+				else
+				{
+					System.out.println( "Invalid Response! Please enter yes or no");
+					games_playedCount--;
+				}
+			
+		}	
+		
+	}
+
+}
